@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.cpp                                         :+:      :+:    :+:   */
+/*   server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 20:42:14 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/13 22:14:07 by jmorneau         ###   ########.fr       */
+/*   Created: 2023/04/13 20:29:29 by jmorneau          #+#    #+#             */
+/*   Updated: 2023/04/13 21:45:37 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/webserv.hpp"
+#include "webserv.hpp"
 
-server::server()
+class server
 {
-	listenner tmp;
-	vServer.push_back(tmp);
-}
+private:
+public:
+	std::vector<listenner> vServer;
+	server();
+	server(std::vector<u_int16_t> &port_list);
+	~server();
+};
 
-server::server(std::vector<u_int16_t> &port_list)
-{	
-	vServer.reserve(port_list.size());
-
-	for (size_t i = 0; i < vServer.capacity(); i++)
-	{
-		listenner tmp(port_list.at(i));
-		vServer.push_back(tmp);
-	}
-}
-
-server::~server()
-{}

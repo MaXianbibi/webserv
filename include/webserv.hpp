@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 16:48:48 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/10 22:18:04 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/13 20:42:51 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@
 // class
 #include "socket.hpp"
 # include "req.hpp"
+#include "server.hpp"
 
 #endif

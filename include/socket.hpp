@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 23:36:18 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/11 00:28:54 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:31:52 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,16 @@ protected:
 	~c_socket();
 };
 
-class server : public c_socket
+class listenner : public c_socket
 {
 public:
-	server();
-	server(u_int32_t port);
-	~server();
+	listenner();
+	listenner(u_int32_t port);
+	~listenner();
+	void run(void);
 private:
+	pollfd fds[MAX_CLIENT];
+	u_int32_t n_fd;
 	void init(u_int32_t port);
 
 };
@@ -42,7 +45,7 @@ private:
 class client : public c_socket
 {
 public:
-	client(server &_server);
+	client(listenner &_server);
 	client(int fd);
 	~client();
 private:
