@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   req_status_line.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 23:33:45 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/14 00:25:15 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:21:25 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,28 @@ const std::string req::message_status_code(u_int16_t code)
 		return (MESSAGE_INTERNAL_SERVER_ERROR);	
 }
 
+u_int16_t req::getFonc(void)
+{
+	
+	
+}
+
 u_int16_t req::parsing_status_line(std::vector<std::string> status_line)
 {
 	if (status_line.size() != 3 || (status_line[2] != "HTTP/1.1\r" && status_line[2] != "HTTP/1.1" ) || (this->methode = find_methode(status_line[0])) == 0)
+	{	
+		this->file_name = "BAD_REQUEST.html";
 		return (BAD_REQUEST);
+	}
 	if (status_line[1] == "/")
 		status_line[1] = "/index.html"; // peut être remplacer par le root index
 	this->file.open(status_line[1].substr(1));
 	this->file_name = status_line[1];
 	if (!file.is_open())
+	{
+		this->file_name = "NOT_FOUND.html"; // même chose ici
 		return (NOT_FOUND);
-	this->file_name = status_line[1];
+	}
 	return(OK);
 }
 

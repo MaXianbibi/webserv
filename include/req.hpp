@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   req.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 21:03:53 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/14 01:03:47 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:20:41 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ private:
 
 	// body
 	void body_creation(void);
+	u_int16_t req::getFonc(void);
 	
 	
 public:

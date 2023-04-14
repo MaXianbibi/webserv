@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listenner.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 00:44:35 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/13 23:42:42 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/14 11:57:00 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void listenner::run()
 					fatal("recv");
 				else if (res == 0)
 				{
-					close(fds[i].fd);
+					close(fds[i].fd);  // close n'est pas une commande autorisé, ne fait aucun sens :/
 					fds[i] = fds[n_fd - 1];
 					n_fd--;
 				}

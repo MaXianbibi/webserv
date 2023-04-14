@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   d_webserv.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 23:24:16 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/10 23:20:02 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:44:52 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define MESSAGE_NOT_MODIFIED 				"NOT MODIFIED"
 # define MESSAGE_BAD_REQUEST 				"BAD REQUEST"
 # define MESSAGE_UNAUTHORIZED 				"UNAUTHORIZED"
-# define MESSAGE_NOT_FOUND 					"NOT FOUND"
+# define MESSAGE_NOT_FOUND 					"Not Found"
 # define MESSAGE_INTERNAL_SERVER_ERROR		"INTERNAL SERVER ERRROR"
 
 enum		status_code
