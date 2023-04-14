@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 01:13:51 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/13 20:27:24 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:43:04 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,4 @@ client::client(int fd)
 }
 
 client::~client()
-{
-	// close(fd_socket); // a voir :/
-}
+{}

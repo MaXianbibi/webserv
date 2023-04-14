@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:42:14 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/13 22:14:07 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:46:07 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,10 @@ server::server(std::vector<u_int16_t> &port_list)
 }
 
 server::~server()
-{}
+{
+	for (size_t i = 0; i < this->vServer.size(); i++)
+	{
+		std::cout << vServer[i].getfd() << std::endl;
+		close(this->vServer[i].getfd());
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 00:44:35 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/13 22:20:13 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:42:42 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void listenner::run()
 				else
 				{
 					std::cout << RED << "[DEBUG] : \n" << RESET <<  buffer << std::endl;
-
 					req x(std::string(buffer), fds[i].fd);
 					if (send(fds[i].fd, x.getHttpString().c_str(), x.getHttpString().length(), 0) < 0)
 							fatal("send");
