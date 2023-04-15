@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   req.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 21:06:06 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/14 00:39:19 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/14 19:19:19 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ req::req(std::string HTTP_REQ, const int fd) : b(fd)
 {
 	if (HTTP_REQ.length()  < 1)
 		fatal("Bad HTTP REQUEST");
+	this->http_req = HTTP_REQ;
 	status_line_creation(HTTP_REQ.substr(0, HTTP_REQ.find('\n')));
-	body_creation();
-	header_creation(HTTP_REQ);
+	if (this->methode == &req::getFonc)
+		body_creation();
+	header_creation();
 }
 
 req::~req()

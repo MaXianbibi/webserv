@@ -6,7 +6,7 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 23:36:07 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/14 18:10:30 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/14 19:35:41 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ std::string req::cType( void )
 	return (std::string("application/octet-stream"));
 }
 
-void req::header_creation(const std::string &line)
+void req::header_creation(void)
 {
-	(void)line;
 	this->header = "Host: " + std::string(inet_ntoa(b.getAddr().sin_addr)) + ":" + std::to_string(ntohs(b.getAddr().sin_port)) + "\r\n";
-	this->header += "Content-Type: " + cType() + "; charset=UTF-8\r\n"; // peut PEUT ËTRE causé un problme (utf-8 etc.)
-	this->header += "Content-Length: " + std::to_string(this->body.length()) + "\r\n";
+	if (this->methode == &req::getFonc)
+	{
+		this->header += "Content-Type: " + cType() + "; charset=UTF-8\r\n"; // peut PEUT ËTRE causé un problme (utf-8 etc.)
+		this->header += "Content-Length: " + std::to_string(this->body.length()) + "\r\n";
+	}
 
 	// 				User-Agent
 	this->header += "\r\n";

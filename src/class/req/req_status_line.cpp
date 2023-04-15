@@ -6,22 +6,22 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 23:33:45 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/14 18:21:25 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/14 19:38:54 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/webserv.hpp"
 
-u_int16_t req::find_methode(std::string methode)
+req::meth			req::find_methode(std::string &methode)
 {
 	if (methode == "GET")
-		return (GET);
+		return (&req::getFonc);
 	if (methode == "POST")
-		return (POST);
+		return (&req::postFonc);
 	if (methode == "PUT")
-		return (PUT);
+		return (0);
 	if (methode == "DELETE")
-		return (DELETE);
+		return (0);
 	return (0);
 }
 
@@ -45,11 +45,36 @@ const std::string req::message_status_code(u_int16_t code)
 		return (MESSAGE_INTERNAL_SERVER_ERROR);	
 }
 
-u_int16_t req::getFonc(void)
+u_int16_t req::getFonc(std::string &element)
 {
-	
-	
+	if (element == "/")
+		element = "/index.html"; // peut être remplacer par le root index
+	this->file.open(element.substr(1));
+	this->file_name = element;
+	if (!file.is_open())
+	{
+		this->file_name = "NOT_FOUND.html"; // même chose ici
+		return (NOT_FOUND);
+	}
+	return(OK);
 }
+
+u_int16_t req::postFonc(std::string &element)
+{
+	(void)element;
+	
+	std::string tmp;
+	std::vector<std::string> info;
+	tmp = this->http_req.substr(http_req.rfind('\n'));
+
+	info = split(tmp, '&');
+	std::cout << "voici les infos obtenue : " << std::endl;
+	for (size_t i = 0; i < info.size(); i++)
+		std::cout << info[i] << std::endl;
+	
+	return (OK);
+}
+
 
 u_int16_t req::parsing_status_line(std::vector<std::string> status_line)
 {
@@ -58,16 +83,7 @@ u_int16_t req::parsing_status_line(std::vector<std::string> status_line)
 		this->file_name = "BAD_REQUEST.html";
 		return (BAD_REQUEST);
 	}
-	if (status_line[1] == "/")
-		status_line[1] = "/index.html"; // peut être remplacer par le root index
-	this->file.open(status_line[1].substr(1));
-	this->file_name = status_line[1];
-	if (!file.is_open())
-	{
-		this->file_name = "NOT_FOUND.html"; // même chose ici
-		return (NOT_FOUND);
-	}
-	return(OK);
+	return ((this->*methode)(status_line[1]));
 }
 
 void req::status_line_creation(const std::string &line)
