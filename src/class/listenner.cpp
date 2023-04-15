@@ -6,7 +6,7 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 00:44:35 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/14 11:57:00 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/14 21:32:49 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void listenner::run()
 			{
 				char buffer[0xffff];
 				int res = recv(fds[i].fd, buffer, 0xffff - 1, 0);
-				if (res < 0)
-					fatal("recv");
+				if (res < 0) // pt faire une erreur 500 ici si on spam :/
+					continue;
 				else if (res == 0)
 				{
 					close(fds[i].fd);  // close n'est pas une commande autorisé, ne fait aucun sens :/
@@ -78,7 +78,7 @@ void listenner::run()
 					std::cout << RED << "[DEBUG] : \n" << RESET <<  buffer << std::endl;
 					req x(std::string(buffer), fds[i].fd);
 					if (send(fds[i].fd, x.getHttpString().c_str(), x.getHttpString().length(), 0) < 0)
-							fatal("send");
+						continue; // même chose quen haut, pt erreur 500, a voir
 				}
 			}
 		}

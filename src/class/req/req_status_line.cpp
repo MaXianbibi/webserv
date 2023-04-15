@@ -6,7 +6,7 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 23:33:45 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/14 19:38:54 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/15 14:14:52 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ const std::string req::message_status_code(u_int16_t code)
 		return (MESSAGE_OK);
 	if (code == OK_CREATED)
 		return (MESSAGE_OK_CREATED);
+	if (code == OK_NO_CONTENT)
+		return (MESSAGE_OK_NO_CONTENT);
 	if (code == MOVED_TO_NEW_URL)
 		return (MESSAGE_MOVED_TO_NEW_URL);
 	if (code == NOT_MODIFIED)
@@ -72,7 +74,7 @@ u_int16_t req::postFonc(std::string &element)
 	for (size_t i = 0; i < info.size(); i++)
 		std::cout << info[i] << std::endl;
 	
-	return (OK);
+	return (OK_NO_CONTENT);
 }
 
 
