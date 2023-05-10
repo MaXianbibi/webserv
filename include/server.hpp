@@ -21,4 +21,3 @@ public:
 	server(std::vector<u_int16_t> &port_list);
 	~server();
 };
-
