@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listenner.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
+/*   By: loadjou <loadjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 00:44:35 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/14 21:32:49 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/05/30 17:54:01 by loadjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void listenner::run()
 					continue;
 				else if (res == 0)
 				{
-					close(fds[i].fd);  // close n'est pas une commande autorisé, ne fait aucun sens :/
+					close(fds[i].fd);  // close est une fonction autorisée!
 					fds[i] = fds[n_fd - 1];
 					n_fd--;
 				}

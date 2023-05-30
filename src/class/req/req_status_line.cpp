@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   req_status_line.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
+/*   By: loadjou <loadjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 23:33:45 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/15 14:14:52 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/05/30 18:43:05 by loadjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ const std::string req::message_status_code(u_int16_t code)
 u_int16_t req::getFonc(std::string &element)
 {
 	if (element == "/")
-		element = "/index.html"; // peut être remplacer par le root index
+		element = "html/index.html"; // peut être remplacer par le root index
 	this->file.open(element.substr(1));
+	std::cout << this->file.is_open() << std::endl;
 	this->file_name = element;
 	if (!file.is_open())
 	{
-		this->file_name = "NOT_FOUND.html"; // même chose ici
+		this->file_name = "html/NOT_FOUND.html"; // même chose ici
 		return (NOT_FOUND);
 	}
 	return(OK);
@@ -82,7 +83,7 @@ u_int16_t req::parsing_status_line(std::vector<std::string> status_line)
 {
 	if (status_line.size() != 3 || (status_line[2] != "HTTP/1.1\r" && status_line[2] != "HTTP/1.1" ) || (this->methode = find_methode(status_line[0])) == 0)
 	{	
-		this->file_name = "BAD_REQUEST.html";
+		this->file_name = "html/BAD_REQUEST.html";
 		return (BAD_REQUEST);
 	}
 	return ((this->*methode)(status_line[1]));

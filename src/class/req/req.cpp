@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   req.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
+/*   By: loadjou <loadjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 21:06:06 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/14 19:19:19 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/05/30 18:39:18 by loadjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void req::body_creation(void)
 	if (!this->file.is_open())
 	{
 		if (this->status_code == 404)	
-			this->file.open("NOT_FOUND.html");
+			this->file.open("html/NOT_FOUND.html");
 		else if (this->status_code == 400)
-			this->file.open("BAD_REQUEST.html");
+			this->file.open("html/BAD_REQUEST.html");
 		if (!this->file.is_open())
 			fatal("open");
 	}
