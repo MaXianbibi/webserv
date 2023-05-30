@@ -24,6 +24,11 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 
+run: re
+	@clear
+	@echo "\r\033[33mSERVER LAUNCHED!\033[0m         "
+	@./$(NAME)
+
 re: fclean all
 
 .PHONY: all clean fclean re
